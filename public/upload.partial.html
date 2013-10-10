@@ -1,31 +1,22 @@
+<h1>Upload Lyrics</h1>
 
-<div id="upload">
-
-  <h1>Upload Lyrics</h1>
-
-  <div ng-controller="UploadFormCtrl">
-    <form name="uploadForm">
-      <div class="form-group"
-        ng-class="{error: uploadForm.name.$invalid}">
-        <label for="title">Title</label> <input type="text"
-          class="form-control" placeholder="Enter song title"
-          ng-model="lyrics.title" required>
-      </div>
-      <div class="form-group"
-        ng-class="{error: uploadForm.name.$invalid}">
-        <label for="title">Artist</label> <input type="text"
-          class="form-control" placeholder="Enter song artist"
-          ng-model="lyrics.artist" required>
-      </div>
-      <div class="form-group"
-        ng-class="{error: uploadForm.name.$invalid}">
-        <label for="title">Lyrics</label>
-        <textarea class="form-control" rows="20"
-          placeholder="Enter song lyrics" ng-model="lyrics.text"
-          required></textarea>
-      </div>
-      <button class="btn btn-default" ng-click="submit()">Submit</button>
-    </form>
-  </div>
-
+<div ng-controller="UploadFormCtrl">
+  <form name="uploadForm">
+    <div class="form-group" ng-class="{error: uploadForm.name.$invalid}">
+      <label for="title">Title</label> <input type="text"
+        class="form-control" placeholder="Enter song title"
+        ng-model="lyrics.title" required>
+    </div>
+    <div class="form-group" ng-class="{error: uploadForm.name.$invalid}">
+      <label for="title">Artist</label> <input type="text"
+        class="form-control" placeholder="Enter song artist"
+        ng-model="lyrics.artist" required>
+    </div>
+    <div class="form-group" ng-class="{error: uploadForm.name.$invalid}">
+      <label for="title">Lyrics</label>
+      <textarea class="form-control" rows="20"
+        placeholder="Enter song lyrics" ng-model="lyrics.text" required></textarea>
+    </div>
+    <button class="btn btn-default" ng-click="submit()">Submit</button>
+  </form>
 </div>

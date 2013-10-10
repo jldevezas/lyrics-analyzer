@@ -34,3 +34,6 @@ app.controller('UploadFormCtrl', function($scope, $http) {
 		});
 	};
 });
+
+app.controller('LyricsSelectCtrl', function($scope, $http) {
+});

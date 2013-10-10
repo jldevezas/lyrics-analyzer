@@ -2,12 +2,11 @@ body {
 	padding-top: 50px;
 }
 
-#home {
-	padding: 40px 15px;
-	text-align: center;
+h1,h2,h3,h4,h5,h6 {
+	margin-bottom: 30px;
 }
 
-#upload {
-	margin: auto;
-	width: 500px;
+.center {
+	margin: 0 auto;
+	float: none;
 }

@@ -3,12 +3,15 @@
 # ~~~~
 
 # Home page
-GET      /                     controllers.Application.index
-#GET      /api/lyrics/:id       controllers.Lyrics.getLyricsById
-#GET      /api/lyrics/:artist   controllers.Lyrics.getLyricsByArtist
-POST     /api/lyrics           controllers.Lyrics.postLyrics
-#PUT      /api/lyrics           controllers.Lyrics.putLyrics
-#DELETE   /api/lyrics/:id       controllers.Lyrics.deleteLyricsById
+GET      /                                    controllers.Application.index
+
+# Lyrics CRUD
+GET      /api/lyrics                          controllers.Lyrics.getAllLyrics
+GET      /api/lyrics/{id}                     controllers.Lyrics.getLyricsById
+GET      /api/lyrics/search/artist/{artist}   controllers.Lyrics.getLyricsByArtist
+POST     /api/lyrics                          controllers.Lyrics.postLyrics
+PUT      /api/lyrics                          controllers.Lyrics.putLyrics
+DELETE   /api/lyrics/{id}                     controllers.Lyrics.deleteLyricsById
 
 # Map static resources from the /public folder to the /assets URL path
-GET      /assets/*file         controllers.Assets.at(path="/public", file)
+GET      /assets/*file                        controllers.Assets.at(path="/public", file)
