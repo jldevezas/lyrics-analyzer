@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="lyricsAnalyzerApp">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="../../assets/ico/favicon.png">
+
+<title>Lyrics Analyzer</title>
+
+<!-- Bootstrap core CSS -->
+<link
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="stylesheets/main.css" rel="stylesheet">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script type="text/javascript" src="javascripts/app.js"></script>
+<script type="text/javascript" src="javascripts/controllers.js"></script>
+<script type="text/javascript" src="https://raw.github.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-0.6.0.min.js"></script>
+</head>
+
+<body>
+
+  <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavCtrl">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle"
+          data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span> <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#/home">Lyrics Analyzer</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li ng-class="{active: isActive('/home')}"><a href="#/home">Home</a></li>
+          <li ng-class="{active: isActive('/upload')}"><a href="#/upload">Upload</a></li>
+          <li ng-class="{active: isActive('/about')}"><a href="#/about">About</a></li>
+          <li ng-class="{active: isActive('/contact')}"><a href="#/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="container" ng-view>
+  </div>
+    
+</body>
+</html>
