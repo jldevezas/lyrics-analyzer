@@ -9,20 +9,30 @@
 
 <title>Lyrics Analyzer</title>
 
-<!-- Bootstrap core CSS -->
 <link
-  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css"
   rel="stylesheet">
 
-<!-- Custom styles for this template -->
 <link href="stylesheets/main.css" rel="stylesheet">
 
 <script type="text/javascript"
-  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-<script type="text/javascript" src="javascripts/app.js"></script>
-<script type="text/javascript" src="javascripts/controllers.js"></script>
+  src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script type="text/javascript"
-  src="https://raw.github.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-0.6.0.min.js"></script>
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script type="text/javascript"
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.min.js"></script>
+<script type="text/javascript"
+  src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"></script>
+
+<script type="text/javascript"
+  src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js"></script>
+<script type="text/javascript"
+  src="https://raw.github.com/jasondavies/d3-cloud/master/d3.layout.cloud.js"></script>
+<script type="text/javascript" src="javascripts/cloud.js"></script>
+
+<script type="text/javascript" src="javascripts/app.js"></script>
+<script type="text/javascript" src="javascripts/services.js"></script>
+<script type="text/javascript" src="javascripts/controllers.js"></script>
 </head>
 
 <body>
@@ -44,7 +54,7 @@
             href="#/home">Home</a></li>
           <li ng-class="{active: isActive('/upload')}"><a
             href="#/upload">Upload</a></li>
-            <li ng-class="{active: isActive('/analyze')}"><a
+          <li ng-class="{active: isActive('/analyze')}"><a
             href="#/analyze">Analyze</a></li>
           <li ng-class="{active: isActive('/about')}"><a
             href="#/about">About</a></li>
@@ -55,11 +65,7 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-7 center" ng-view></div>
-    </div>
-  </div>
+  <div class="container" ng-view></div>
 
 </body>
 </html>

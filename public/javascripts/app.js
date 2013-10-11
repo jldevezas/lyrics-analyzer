@@ -1,6 +1,7 @@
 'use strict';
 
-var app = angular.module('lyricsAnalyzerApp', []);
+var app = angular.module('lyricsAnalyzerApp',
+		[ 'ui.bootstrap', 'app.services' ]);
 
 app.config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/home', {

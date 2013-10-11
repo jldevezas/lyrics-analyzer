@@ -48,21 +48,27 @@ object Lyrics extends Controller {
     val scanner = table.getScanner(scan)
     val results: List[Result] = scanner.iterator.toList
 
-    val data = Seq[JsValue]()
     try {
-      for (result <- results) {
-        val title = new String(result.getColumn(Bytes.toBytes("d"), Bytes.toBytes("title")).get(0).getValue())
-        val artist = new String(result.getColumn(Bytes.toBytes("d"), Bytes.toBytes("artist")).get(0).getValue())
-        val text = new String(result.getColumn(Bytes.toBytes("d"), Bytes.toBytes("text")).get(0).getValue())
-        data :+ Json.toJson(Map("title" -> Json.toJson(title), "artist" -> Json.toJson(artist), "text" -> Json.toJson(text)))
+      val data = results.map { result =>
+        val title = new String(result.getColumn(Bytes.toBytes("d"),
+          Bytes.toBytes("title")).get(0).getValue())
+
+        val artist = new String(result.getColumn(Bytes.toBytes("d"),
+          Bytes.toBytes("artist")).get(0).getValue())
+
+        val text = new String(result.getColumn(Bytes.toBytes("d"),
+          Bytes.toBytes("text")).get(0).getValue())
+
+        Json.toJson(Map(
+          "title" -> Json.toJson(title),
+          "artist" -> Json.toJson(artist),
+          "text" -> Json.toJson(text)))
       }
+
+      Ok(Json.obj("success" -> "Lyrics successfully returned.", "data" -> Json.toJson(data)))
     } finally {
       scanner.close
     }
-    
-    println(data)
-
-    Ok(Json.toJson(data))
   }
 
   def getLyricsById = TODO

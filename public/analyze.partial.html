@@ -1,15 +1,36 @@
-<h1>Analyze</h1>
+<div class="row">
+  <div class="col-lg-6">
 
-<p class="lead">Select some of the available lyrics to analyze their
-  terms.</p>
+    <h1>Select Lyrics</h1>
 
-<div ng-controller="LyricsSelectCtrl">
-  <button type="button" class="btn btn-primary"
-    ng-model="checkModel.left" btn-checkbox>Song 1</button>
-  <br />
-  <button type="button" class="btn btn-primary"
-    ng-model="checkModel.middle" btn-checkbox>Song 2</button>
-  <br />
-  <button type="button" class="btn btn-primary"
-    ng-model="checkModel.right" btn-checkbox>Song 3</button>
+    <p class="lead">Select some of the available lyrics to analyze
+      their terms.</p>
+
+    <div ng-controller="LyricsSelectCtrl">
+      <div ng-class="{hide: hideLoader}">
+        <img src="images/small-loader.gif">
+      </div>
+
+      <div class="buttons-list" ng-repeat="lyrics in lyricsList">
+        <span tooltip-popup-delay="1000" tooltip-placement="bottom"
+          tooltip="{{preview(lyrics.text)}}">
+
+          <button type="button" class="btn btn-primary" btn-checkbox
+            ng-model="lyrics.checked">{{lyrics.title}}, by
+            {{lyrics.artist}}</button>
+
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-lg-6">
+
+    <div id="cloud" class="jumbotron" ng-controller="LyricsCloudCtrl">
+      <p class="lead">The word cloud will be shown here after you
+        select some lyrics.</p>
+    </div>
+
+  </div>
 </div>
