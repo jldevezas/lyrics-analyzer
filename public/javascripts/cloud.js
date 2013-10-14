@@ -1,17 +1,39 @@
-var Cloud = function(text) {
-	if (text === "") {
-		this.words = [];
-	}
-	this.words = text.split(/[\s+]/);
-	console.log("WORDS:");
-	console.log(this.words);
+String.prototype.removePunctuation = function() {
+	var cleanedString = this.valueOf();
+	return cleanedString.replace(/[.,;:!?"']/g, '');
 };
 
-Cloud.prototype.makeCloud = function(container) {
-	$(container).empty();
-	var fill = d3.scale.category20();
+var Cloud = function(container) {
+	this.container = container;	
+	console.log("Created Cloud object.");
+};
 
-	d3.layout.cloud().size([300, 300])
+Cloud.prototype.makeCloud = function(text) {
+	var self = this;
+
+	$(this.container + " svg").remove();
+
+	if (text === undefined || text === null || text === "") {
+		$(this.container + " .message")
+			.css("display", "block");
+		return;
+	}
+	
+	this.words = text
+		.toLowerCase()
+		.removePunctuation()
+		.removeStopWords()
+		.split(/[\s+]/);
+	
+	$(this.container + " .message")
+		.css("display", "none");
+			
+	var fill = d3.scale.category20(),
+		width = $(this.container).width(),
+		height = $(this.container).height();
+
+	d3.layout.cloud()
+	    .size([width, height])
 	    .words(this.words.map(function(d) {
 	      return {text: d, size: 10 + Math.random() * 90};
 	    }))
@@ -23,11 +45,11 @@ Cloud.prototype.makeCloud = function(container) {
 	    .start();
 
 	function draw(words) {
-	  d3.select(container).append("svg")
-	      .attr("width", 300)
-	      .attr("height", 300)
+	  d3.select(self.container).append("svg")
+	      .attr("width", width)
+	      .attr("height", height)
 	    .append("g")
-	      .attr("transform", "translate(150,150)")
+	      .attr("transform", "translate(" + ~~(width/2) + "," + ~~(height/2) + ")")
 	    .selectAll("text")
 	      .data(words)
 	    .enter().append("text")
@@ -39,5 +61,5 @@ Cloud.prototype.makeCloud = function(container) {
 	        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
 	      })
 	      .text(function(d) { return d.text; });
-	}	
+	}
 }

@@ -1,5 +1,3 @@
-'use strict';
-
 app.controller('NavCtrl', function($scope, $location) {
 	$scope.isActive = function(route) {
 		return route === $location.path();
@@ -34,11 +32,11 @@ app.controller('UploadFormCtrl', function($scope, $http) {
 	};
 });
 
-app.controller('LyricsSelectCtrl', [
-		'$rootScope',
+app.controller('AnalyzeCtrl', [
 		'$scope',
 		'LyricsFactory',
-		function($rootScope, $scope, LyricsFactory) {
+		'WordCloud',
+		function($scope, LyricsFactory, WordCloud) {
 			$scope.hideLoader = false;
 
 			LyricsFactory.get({}, function(lyricsFactory) {
@@ -50,31 +48,29 @@ app.controller('LyricsSelectCtrl', [
 				return text.split('\n\n')[0] + "\n[...]";
 			};
 
-			$scope.$watch('lyricsList', function(lyricsList) {
-				console.log('update text');
-			}, true);
+			$scope.updateWordCloud = function() {
+				if ($scope.lyricsList !== undefined
+						&& $scope.lyricsList !== null) {
 
-			$scope.updateSelectedText = function() {
-				console.log("clicked");
-				if ($scope.lyricsList === undefined
-						|| $scope.lyricsList === null) {
-					return;
-				}
-
-				var selectedText = "";
-				for (var i = 0; i < $scope.lyricsList.length; i++) {
-					if ($scope.lyricsList[i].checked) {
-						selectedText += " " + $scope.lyricsList[i].text;
+					var checkedLyrics = $scope.lyricsList.filter(function(
+							lyrics) {
+						return lyrics.checked;
+					});
+					
+					if (checkedLyrics.length <= 0) {
+						return;
 					}
+
+					$("#cloud svg").remove();
+					$("#cloud .message").css("display", "none");
+					$("#cloud .loader").css("display", "block");
+
+					var selectedText = "";
+					for (var i = 0; i < checkedLyrics.length; i++) {
+						selectedText += " " + checkedLyrics[i].text;
+					}
+
+					WordCloud.async(selectedText);
 				}
-				// $rootScope.$broadcast('UPDATE_SELECTED_TEXT', selectedText);
 			};
 		} ]);
-
-app.controller('LyricsCloudCtrl', function($scope) {
-	$scope.$on('UPDATE_SELECTED_TEXT', function(event, selectedText) {
-		console.log(event);
-		var c = new Cloud(selectedText);
-		c.makeCloud("#cloud");
-	});
-});

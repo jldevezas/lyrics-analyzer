@@ -1,12 +1,15 @@
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-6" ng-controller="AnalyzeCtrl">
 
-    <h1>Select Lyrics</h1>
+    <h1>Word Cloud</h1>
 
-    <p class="lead">Select some of the available lyrics to analyze
-      their terms.</p>
+    <p class="lead">
+      Select some of the available lyrics and press <a
+        ng-click="updateWordCloud()" style="cursor: pointer">update</a>
+      to view the word cloud for their lyrics.
+    </p>
 
-    <div ng-controller="LyricsSelectCtrl">
+    <div>
       <div ng-class="{hide: hideLoader}">
         <img src="images/small-loader.gif">
       </div>
@@ -27,9 +30,11 @@
 
   <div class="col-lg-6">
 
-    <div id="cloud" class="jumbotron" ng-controller="LyricsCloudCtrl">
-      <p class="lead">The word cloud will be shown here after you
-        select some lyrics.</p>
+    <div id="cloud" class="jumbotron">
+      <p class="lead message">The word cloud will be shown here
+        after you select some lyrics.</p>
+      <img class="loader" src="images/loader.gif"
+        style="display: none">
     </div>
 
   </div>

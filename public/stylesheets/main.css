@@ -14,6 +14,9 @@ h1,h2,h3,h4,h5,h6 {
 .buttons-list button {
 	width: 100%;
 	margin-bottom: 5px;
+	text-align: left;
+	height: 30px;
+	font-size: 10pt;
 }
 
 .tooltip-inner {
@@ -27,5 +30,11 @@ h1,h2,h3,h4,h5,h6 {
 
 #cloud {
 	margin-top: 30px;
-	height: 500px;
+	height: 800px;
+}
+
+.loader {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 320px;
 }
